@@ -12,5 +12,5 @@ Add your **name** and **GitHub profile link** here after your contribution is me
 
 ### Contributors
 
-- [Vijay Rajesh R](https://github.com/vijayrajeshr – excited about open source!
+- [Vijay Rajesh R](https://github.com/vijayrajeshr) – ⛹️ excited about open source!
 - 
