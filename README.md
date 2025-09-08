@@ -5,7 +5,12 @@ A beginner-friendly open source space where you can make **good first contributi
 ---
 
 ## 🚀 Getting Started
-------------
+
+Welcome to your first step in open source!  
+- Browse the `/projects` folder to find projects you’re interested in.  
+- Pick easy or labeled **good first issues** to get started smoothly.  
+- Submit your pull requests following our guidelines.  
+- Ask questions or request help anytime – we’re here to support you!
 
 ---
 
@@ -20,12 +25,9 @@ If you need help with this, feel free to ask!
 ## 📂 Repository Structure
 
 - `/projects` — Projects open for contributions  
-- `/issues` — Categorized issues like good first issues and help wanted  
-- `README.md` — This file  
-- `CONTRIBUTING.md` — How to contribute  
+- `README.md` — This welcome and guide file  
 - `CONTRIBUTORS.md` — List of contributors  
 - `CODE_OF_CONDUCT.md` — Community guidelines  
-- `.github/` — Templates and GitHub settings  
 
 ---
 
@@ -40,8 +42,8 @@ If you need help with this, feel free to ask!
 
 ## 🤝 Code of Conduct
 
-We strive to foster an inclusive environment. Please see our [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) for guidelines.
+We strive to foster an inclusive and friendly environment. Please see our [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) for guidelines.
 
 ---
 
-Thank you for joining ! Let's make open source accessible and fun — together. 🎉
+Thank you for joining **Open Source For Newbies**! Let's make open source accessible and fun — together. 🎉
