@@ -43,14 +43,14 @@ If you need help with this, feel free to ask!
 We strive to foster an inclusive and friendly environment. Please contact for any doubts  :)
 
 
-![smile-vr]()
+
+<img src="https://github.com/user-attachments/assets/d02851cc-0e7f-4687-aca8-1f6cebc4a6d7" alt="vr" width="300" />
 
 <div align="center">
-  <img src="[https://github.com/user-attachments/assets/bec847ce-63a3-4d56-baf5-7ab256e5e56e](https://github.com/user-attachments/assets/d02851cc-0e7f-4687-aca8-1f6cebc4a6d7)" alt="vr" width="300" />
+  <img src="https://github.com/user-attachments/assets/d02851cc-0e7f-4687-aca8-1f6cebc4a6d7" alt="vr" width="400" />
 </div>
 
 
-
-
+https://github.com/user-attachments/assets/d02851cc-0e7f-4687-aca8-1f6cebc4a6d7
 
 Thank you for joining **Open Source For Newbies**! Let's make open source accessible and fun — together. 🎉
