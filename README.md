@@ -42,5 +42,7 @@ If you need help with this, feel free to ask!
 We strive to foster an inclusive and friendly environment. Please contact for any doubts  :)
 
 ![vr](https://github.com/user-attachments/assets/bec847ce-63a3-4d56-baf5-7ab256e5e56e)
+<img src="https://github.com/user-attachments/assets/bec847ce-63a3-4d56-baf5-7ab256e5e56e" alt="vr" width="300" />
+
 
 Thank you for joining **Open Source For Newbies**! Let's make open source accessible and fun — together. 🎉
