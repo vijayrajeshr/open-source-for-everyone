@@ -41,7 +41,7 @@ If you need help with this, feel free to ask!
 
 ## 🤝 Code of Conduct
 
-We strive to foster an inclusive and friendly environment. Please see our [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) for guidelines.
+We strive to foster an inclusive and friendly environment. Please contact for any doubts  :)
 
 
 
