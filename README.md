@@ -1,4 +1,4 @@
-# Welcome to [RepoName] 🌟
+# Welcome to [https://github.com/vijayrajeshr/open-source-for-newbies/tree/main] 🌟
 
 A beginner-friendly open source space where you can make **good first contributions**, explore **good first issues**, add and collaborate on **projects**, and grow your open source skills!
 
