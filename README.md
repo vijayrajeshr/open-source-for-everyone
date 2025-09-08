@@ -25,8 +25,8 @@ If you need help with this, feel free to ask!
 
 - `/projects` — Projects open for contributions  
 - `README.md` — This welcome and guide file  
-- `CONTRIBUTORS.md` — List of contributors  
-- `CODE_OF_CONDUCT.md` — Community guidelines  
+- `CONTRIBUTORS.md` — List of contributors
+
 
 
 
@@ -39,10 +39,8 @@ If you need help with this, feel free to ask!
 
 
 
-## 🤝 Code of Conduct
-
 We strive to foster an inclusive and friendly environment. Please contact for any doubts  :)
 
-
+![vr](https://github.com/user-attachments/assets/bec847ce-63a3-4d56-baf5-7ab256e5e56e)
 
 Thank you for joining **Open Source For Newbies**! Let's make open source accessible and fun — together. 🎉
