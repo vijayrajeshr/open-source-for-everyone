@@ -49,4 +49,4 @@ We strive to foster an inclusive and friendly environment. Please contact for an
 
 
 
-Thank you for joining **Open Source For Newbies**! Let's make open source accessible and fun — together. 🎉
+Thank you for joining **Open Source For Everyone**! Let's make open source accessible and fun — together. 🎉
