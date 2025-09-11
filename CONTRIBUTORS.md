@@ -13,4 +13,4 @@ Add your **name** and **GitHub profile link** here after your contribution is me
 ### Contributors
 
 - [Vijay Rajesh R](https://github.com/vijayrajeshr) – 😊 excited about open source!
-- 
+- [Samuel Cuerrier](https://github.com/samuelcuerrier01) - trying to get my first few pulls im from Canada
