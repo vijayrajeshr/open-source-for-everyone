@@ -97,6 +97,14 @@ body{
     animation-duration: 5s;
     animation-name: animate;
   }
+    .eight{
+    width: 270px;
+    height: 270px;
+    border-color:#1ba3f2;
+    animation-delay: 1.6s;
+    animation-duration: 5s;
+    animation-name: animate;
+  }
 
   @keyframes animate{
     0%{
