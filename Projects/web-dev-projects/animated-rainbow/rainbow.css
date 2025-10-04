@@ -1,26 +1,22 @@
 body {
     margin: 0;
     padding: 0;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    background: linear-gradient(180deg, #01030f, #182233);
     height: 100vh;
     overflow: hidden;
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1.5px);
-    background-size: 30px 30px;
-    animation: twinkle 10s infinite linear;
-}
-
-@keyframes twinkle {
-    from { background-position: 0 0; }
-    to { background-position: -100px 50px; }
+    height: 40%;
+    background: linear-gradient(0deg, rgba(24,34,51,1) 0%, rgba(24,34,51,0) 100%);
+    z-index: 10;
 }
 
 .center {
@@ -37,16 +33,6 @@ ul {
     width: 400px;
     height: 240px;
     overflow: hidden;
-    animation: draw-rainbow 3s 0.5s ease-out forwards;
-}
-
-@keyframes draw-rainbow {
-    0% {
-        clip-path: inset(0 100% 0 0);
-    }
-    100% {
-        clip-path: inset(0 0 0 0);
-    }
 }
 
 ul li {
@@ -56,10 +42,24 @@ ul li {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translate(-50%,-50%) rotate(-45deg);
     border-bottom-color: transparent !important;
     border-left-color: transparent !important;
-    filter: drop-shadow(0 0 10px currentColor);
+    animation: animate 5s ease-in-out infinite alternate;
+    transform: translate(-50%,-50%);
+    filter: drop-shadow(0 0 15px currentColor) drop-shadow(0 0 5px currentColor);
+}
+
+.caption {
+    position: absolute;
+    top: 245px;
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    z-index: 20;
 }
 
 .one {
@@ -67,6 +67,7 @@ ul li {
     height: 60px;
     border-color:#FF0000;
     color: #FF0000;
+    animation-delay: .2s;
 }
 
 .two {
@@ -74,6 +75,7 @@ ul li {
     height: 90px;
     border-color:#FF7F00;
     color: #FF7F00;
+    animation-delay: .4s;
 }
 
 .three {
@@ -81,6 +83,7 @@ ul li {
     height: 120px;
     border-color:#FFFF00;
     color: #FFFF00;
+    animation-delay: .6s;
 }
 
 .four {
@@ -88,6 +91,7 @@ ul li {
     height: 150px;
     border-color:#00FF00;
     color: #00FF00;
+    animation-delay: .8s;
 }
 
 .five {
@@ -95,6 +99,7 @@ ul li {
     height: 180px;
     border-color:#0000FF;
     color: #0000FF;
+    animation-delay: 1s;
 }
 
 .six {
@@ -102,6 +107,7 @@ ul li {
     height: 210px;
     border-color:#4B0082;
     color: #4B0082;
+    animation-delay: 1.2s;
 }
 
 .seven {
@@ -109,54 +115,14 @@ ul li {
     height: 240px;
     border-color:#9400D3;
     color: #9400D3;
+    animation-delay: 1.4s;
 }
 
-.cloud {
-    position: absolute;
-    bottom: -20px;
-    width: 150px;
-    height: 50px;
-    background: #f2f9fe;
-    border-radius: 50px;
-    opacity: 0.8;
-    animation: drift 25s infinite linear alternate;
-}
-
-.cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background: #f2f9fe;
-    border-radius: 50%;
-}
-
-.cloud::before {
-    width: 80px;
-    height: 80px;
-    top: -40px;
-    left: 20px;
-}
-
-.cloud::after {
-    width: 100px;
-    height: 100px;
-    top: -50px;
-    right: 10px;
-}
-
-.cloud-1 {
-    left: 15%;
-    transform: scale(0.8);
-    animation-duration: 25s;
-}
-
-.cloud-2 {
-    left: 65%;
-    transform: scale(1.1);
-    animation-duration: 35s;
-    animation-delay: -5s;
-}
-
-@keyframes drift {
-    from { transform: translateX(-50px) scale(var(--scale, 1)); }
-    to { transform: translateX(50px) scale(var(--scale, 1)); }
+@keyframes animate {
+    0% {
+        transform: translate(-50%,-50%) rotate(-45deg);
+    }
+    100% {
+        transform: translate(-50%,-50%) rotate(315deg);
+    }
 }
