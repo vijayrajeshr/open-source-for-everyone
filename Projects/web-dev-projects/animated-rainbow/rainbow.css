@@ -46,7 +46,7 @@ ul li {
     border-left-color: transparent !important;
     animation: animate 5s ease-in-out infinite alternate;
     transform: translate(-50%,-50%);
-    filter: drop-shadow(5px 0 10px currentColor);
+    filter: drop-shadow(1px 0 2px currentColor);
 }
 
 .caption {
