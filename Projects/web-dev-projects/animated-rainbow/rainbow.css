@@ -46,8 +46,7 @@ ul li {
     border-left-color: transparent !important;
     animation: animate 5s ease-in-out infinite alternate;
     transform: translate(-50%,-50%);
-    /* Subtle glow effect */
-    filter: drop-shadow(0 0 3px currentColor);
+    filter: drop-shadow(5px 0 10px currentColor);
 }
 
 .caption {
@@ -55,12 +54,23 @@ ul li {
     top: 245px;
     width: 100%;
     text-align: center;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 26px;
-    letter-spacing: 0.2em;
+    font-size: 32px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
     z-index: 20;
+    color: transparent;
+    background-image: linear-gradient(to right, #fff, #fff);
+    background-repeat: no-repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 0% 100%;
+    animation: text-wipe-reveal 3.5s ease-out 1.7s forwards;
+}
+
+@keyframes text-wipe-reveal {
+    to {
+        background-size: 100% 100%;
+    }
 }
 
 .one {
