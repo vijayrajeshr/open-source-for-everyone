@@ -46,7 +46,8 @@ ul li {
     border-left-color: transparent !important;
     animation: animate 5s ease-in-out infinite alternate;
     transform: translate(-50%,-50%);
-    filter: drop-shadow(0 0 15px currentColor) drop-shadow(0 0 5px currentColor);
+    /* Subtle glow effect */
+    filter: drop-shadow(0 0 3px currentColor);
 }
 
 .caption {
@@ -55,10 +56,10 @@ ul li {
     width: 100%;
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
-    font-size: 24px;
+    font-size: 26px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
     z-index: 20;
 }
 
