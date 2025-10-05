@@ -24,8 +24,9 @@
                 x: Math.random()*W,
                 y: Math.random()*H,
                 size: rand(cfg.sizeMin, cfg.sizeMax),
-                alpha: rand(0.08, 0.95),
-                alphaChange: rand(0.002,0.008)
+                alpha: rand(0.3, 1), // brightness
+                vx: rand(-0.05, 0.05), // horizontal speed
+                vy: rand(-0.02, 0.02)  // vertical speed
             });
         }
     }
@@ -33,9 +34,16 @@
     function drawStars(){
         ctx.clearRect(0,0,W,H);
         for(const s of stars){
-            s.alpha += s.alphaChange * (Math.random()<0.5?-1:1);
-            if(s.alpha < 0.08) s.alpha = 0.08;
-            if(s.alpha > 0.95) s.alpha = 0.95;
+            // move star
+            s.x += s.vx;
+            s.y += s.vy;
+
+            // wrap around edges
+            if(s.x > W) s.x = 0;
+            if(s.x < 0) s.x = W;
+            if(s.y > H) s.y = 0;
+            if(s.y < 0) s.y = H;
+
             ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
             ctx.beginPath();
             ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
