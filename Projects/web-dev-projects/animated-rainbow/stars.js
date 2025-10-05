@@ -15,18 +15,18 @@
     };
 
     const cfgNebula = {
-        count: 3,   // fewer nebulae
+        count: 3,
         sizeMin: 150,
-        sizeMax: 300,  // smaller size range
+        sizeMax: 300,
         detail: 6,
         speedFactor: 0.2,
         colorPalette: [
-            'rgba(173, 216, 230, 0.04)',  // very faint blue
-            'rgba(238, 130, 238, 0.04)',  // faint violet
-            'rgba(255, 182, 193, 0.04)',  // faint pink
-            'rgba(144, 238, 144, 0.04)',  // faint green
-            'rgba(255, 160, 122, 0.04)',  // faint salmon
-            'rgba(255, 255, 224, 0.04)'   // faint yellow
+            'rgba(173, 216, 230, 0.04)',
+            'rgba(238, 130, 238, 0.04)',
+            'rgba(255, 182, 193, 0.04)',
+            'rgba(144, 238, 144, 0.04)',
+            'rgba(255, 160, 122, 0.04)',
+            'rgba(255, 255, 224, 0.04)'
         ]
     };
 
@@ -134,7 +134,7 @@
 
                 const gradient = ctx.createRadialGradient(px, py, pr * 0.05, px, py, pr);
                 gradient.addColorStop(0, n.color);
-                gradient.addColorStop(0.6, n.color.replace(/0\.\d+/, "0.02")); 
+                gradient.addColorStop(0.6, n.color.replace(/0\.\d+/, "0.015")); 
                 gradient.addColorStop(1, 'rgba(0,0,0,0)');
 
                 ctx.fillStyle = gradient;
@@ -148,7 +148,7 @@
     // ================== LIGHT BEAMS ==================
     function drawLightBeams() {
         const beamColors = [
-            'rgba(255,255,255,0.03)',
+            'rgba(255,255,255,0.025)',
             'rgba(200,220,255,0.02)',
             'rgba(255,200,255,0.02)'
         ];
@@ -162,12 +162,22 @@
         });
     }
 
+    // ================== VIGNETTE ==================
+    function drawVignette() {
+        const vignette = ctx.createRadialGradient(W/2, H/2, Math.min(W, H) * 0.4, W/2, H/2, Math.max(W, H) * 0.7);
+        vignette.addColorStop(0, 'rgba(0,0,0,0)');
+        vignette.addColorStop(1, 'rgba(0,0,0,0.45)'); // dark edges
+        ctx.fillStyle = vignette;
+        ctx.fillRect(0, 0, W, H);
+    }
+
     // ================== MAIN ANIMATION ==================
     function drawScene() {
         ctx.clearRect(0, 0, W, H);
         drawNebulae();
         drawLightBeams();
         drawStars();
+        drawVignette(); // apply vignette last
     }
 
     function animate() {
