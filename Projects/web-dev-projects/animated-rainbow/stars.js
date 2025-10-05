@@ -25,14 +25,15 @@
                 y: Math.random()*H,
                 size: rand(cfg.sizeMin, cfg.sizeMax),
                 alpha: rand(0.3, 1), 
-                vx: rand(-0.2, 0.2), // increased horizontal speed
-                vy: rand(-0.1, 0.1)  // increased vertical speed
+                vx: rand(-0.12, 0.12), // slower horizontal movement
+                vy: rand(-0.06, 0.06)  // slower vertical movement
             });
         }
     }
 
     function drawStars(){
         ctx.clearRect(0,0,W,H);
+        const time = Date.now();
         for(const s of stars){
             // move star
             s.x += s.vx;
@@ -44,7 +45,10 @@
             if(s.y > H) s.y = 0;
             if(s.y < 0) s.y = H;
 
-            ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+            // slower subtle twinkle
+            const alpha = s.alpha + 0.15 * Math.sin(time*0.002 + s.x + s.y);
+
+            ctx.fillStyle = `rgba(255,255,255,${Math.min(1,Math.max(0.1, alpha))})`;
             ctx.beginPath();
             ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
             ctx.fill();
