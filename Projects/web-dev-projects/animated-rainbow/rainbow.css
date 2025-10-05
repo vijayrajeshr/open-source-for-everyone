@@ -82,36 +82,36 @@ ul li {
     top: 245px;
     width: 100%;
     text-align: center;
-    font-size: 40px;
-    letter-spacing: 0.2em;
+    font-size: 41px;                /* slightly bigger for cinematic effect */
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    font-family: 'Cinzel', serif;   /* premium cinematic font */
     z-index: 20;
     color: transparent;
-    font-family: 'Cinzel', serif; /* cinematic premium font */
-    background-image: linear-gradient(to right, #E6E6FA, #FFFFFF); /* icy white gradient */
+    background-image: linear-gradient(to right, #FFD700, #FFAA00); /* shiny golden gradient */
     background-repeat: no-repeat;
     background-clip: text;
     -webkit-background-clip: text;
-    white-space: nowrap; /* keep in one line */
-    overflow: hidden;
     background-size: 0% 100%;
-    animation: text-wipe-reveal 3.5s ease-out 1.7s forwards; /* original animation */
+    animation: text-wipe-reveal 3.5s ease-out 1.7s forwards;
+    white-space: nowrap;             /* ensures caption stays in one line */
 }
 
 .sub-caption {
     position: absolute;
-    top: 335px; /* spacing below caption */
+    top: 320px;                     /* proper spacing below main caption */
     width: 100%;
     text-align: center;
-    font-size: 18px;
+    font-size: 22px;                /* slightly larger for visibility */
     letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+    /* text-transform: uppercase; */
     z-index: 20;
-    color: #A0E0FF; /* complementary icy blue */
-    /* font-family: 'Cormorant Garamond', serif; elegant cinematic font */
+    color: rgba(180, 220, 255, 0.85);  /* subtle complementary color */
     animation: fade-in 3.5s ease-out 5s forwards;
     opacity: 0;
 }
+
 
 
 
