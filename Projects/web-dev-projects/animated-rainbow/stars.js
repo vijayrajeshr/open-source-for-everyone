@@ -20,13 +20,15 @@
         sizeMax: 300,
         detail: 6,
         speedFactor: 0.2,
+        baseAlpha: 0.04,  // baseline dimness
+        pulseStrength: 0.015, // how much it pulses
         colorPalette: [
-            'rgba(173, 216, 230, 0.04)',
-            'rgba(238, 130, 238, 0.04)',
-            'rgba(255, 182, 193, 0.04)',
-            'rgba(144, 238, 144, 0.04)',
-            'rgba(255, 160, 122, 0.04)',
-            'rgba(255, 255, 224, 0.04)'
+            'rgba(173, 216, 230, ALPHA)',
+            'rgba(238, 130, 238, ALPHA)',
+            'rgba(255, 182, 193, ALPHA)',
+            'rgba(144, 238, 144, ALPHA)',
+            'rgba(255, 160, 122, ALPHA)',
+            'rgba(255, 255, 224, ALPHA)'
         ]
     };
 
@@ -105,7 +107,7 @@
                 x: Math.random() * W,
                 y: Math.random() * H,
                 radius: rand(cfgNebula.sizeMin, cfgNebula.sizeMax),
-                color: cfgNebula.colorPalette[i % cfgNebula.colorPalette.length],
+                baseColor: cfgNebula.colorPalette[i % cfgNebula.colorPalette.length],
                 vx: rand(-0.02, 0.02),
                 vy: rand(-0.01, 0.01),
                 shapes: Array.from({ length: cfgNebula.detail }, () => ({
@@ -118,6 +120,7 @@
     }
 
     function drawNebulae() {
+        const time = Date.now() * 0.0001; // slow pulse
         nebulae.forEach(n => {
             n.x += n.vx * cfgNebula.speedFactor;
             n.y += n.vy * cfgNebula.speedFactor;
@@ -127,14 +130,19 @@
             if (n.y - n.radius > H) n.y = -n.radius;
             if (n.y + n.radius < 0) n.y = H + n.radius;
 
+            // pulse alpha
+            const pulse = cfgNebula.baseAlpha + cfgNebula.pulseStrength * Math.sin(time + n.x * 0.01 + n.y * 0.01);
+
             n.shapes.forEach(s => {
                 const px = n.x + s.offsetX * n.radius * 0.5;
                 const py = n.y + s.offsetY * n.radius * 0.5;
                 const pr = n.radius * s.scale;
 
+                const col = n.baseColor.replace("ALPHA", pulse.toFixed(3));
+
                 const gradient = ctx.createRadialGradient(px, py, pr * 0.05, px, py, pr);
-                gradient.addColorStop(0, n.color);
-                gradient.addColorStop(0.6, n.color.replace(/0\.\d+/, "0.015")); 
+                gradient.addColorStop(0, col);
+                gradient.addColorStop(0.6, col.replace(/0\.\d+/, (pulse * 0.4).toFixed(3)));
                 gradient.addColorStop(1, 'rgba(0,0,0,0)');
 
                 ctx.fillStyle = gradient;
@@ -166,7 +174,7 @@
     function drawVignette() {
         const vignette = ctx.createRadialGradient(W/2, H/2, Math.min(W, H) * 0.4, W/2, H/2, Math.max(W, H) * 0.7);
         vignette.addColorStop(0, 'rgba(0,0,0,0)');
-        vignette.addColorStop(1, 'rgba(0,0,0,0.45)'); // dark edges
+        vignette.addColorStop(1, 'rgba(0,0,0,0.45)');
         ctx.fillStyle = vignette;
         ctx.fillRect(0, 0, W, H);
     }
@@ -177,7 +185,7 @@
         drawNebulae();
         drawLightBeams();
         drawStars();
-        drawVignette(); // apply vignette last
+        drawVignette();
     }
 
     function animate() {
