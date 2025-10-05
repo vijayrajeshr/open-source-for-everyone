@@ -5,18 +5,17 @@
     let W = 0, H = 0;
     const DPR = Math.max(1, window.devicePixelRatio || 1);
 
-    // ------------------- Stars Config -------------------
-    const cfg = {
+    // Star configuration
+    const starCfg = {
         layers: [
             { count: 500, sizeMin: 0.3, sizeMax: 0.8 },   // small stars
             { count: 100, sizeMin: 0.8, sizeMax: 1.5 },   // medium stars
             { count: 20, sizeMin: 1.5, sizeMax: 2 }       // large stars
         ]
     };
-    let stars = [];
 
-    // ------------------- Nebulae / Mist -------------------
-    let clouds = [];
+    let stars = [];
+    let nebulaLayers = [];
 
     function resize() {
         W = window.innerWidth;
@@ -24,13 +23,12 @@
         canvas.width = Math.round(W * DPR);
         canvas.height = Math.round(H * DPR);
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-        createStars();
-        createNebulae();
+        createNebula();
     }
 
     function rand(min, max) { return Math.random() * (max - min) + min; }
 
-    // ------------------- Stars -------------------
+    // ---------- Stars ----------
     function createStars() {
         const starColors = [
             'rgba(255, 255, 255, 1)',    // white
@@ -42,7 +40,7 @@
         ];
 
         stars = [];
-        cfg.layers.forEach(layer => {
+        starCfg.layers.forEach(layer => {
             for (let i = 0; i < layer.count; i++) {
                 const color = starColors[Math.floor(Math.random() * starColors.length)];
                 const glowIntensity = rand(8, 20);
@@ -72,6 +70,7 @@
             if (s.y < 0) s.y = H;
 
             const alpha = s.alpha + 0.35 * Math.sin(time * 0.002 + s.x + s.y);
+
             ctx.shadowBlur = s.glow;
             ctx.shadowColor = s.color;
             ctx.fillStyle = s.color.replace(/1\)$/, `${Math.min(1, Math.max(0.1, alpha))})`);
@@ -82,64 +81,68 @@
         }
     }
 
-    // ------------------- Nebulae -------------------
-    function createNebulae() {
-        clouds = [];
-        for (let i = 0; i < 6; i++) {
-            const nebula = {
-                blobs: [],
-                x: rand(0, W),
-                y: rand(0, H / 2),
-                alpha: rand(0.1, 0.25), // increased base opacity
-                vx: rand(0.005, 0.02),  // slower movement
-                vy: rand(-0.005, 0.005),
-                baseColor: `hsla(${rand(220, 260)}, 70%, 60%, 1)` // slightly brighter
-            };
-            const blobCount = rand(6, 12); // more blobs
-            for (let b = 0; b < blobCount; b++) {
-                nebula.blobs.push({
-                    offsetX: rand(-150, 150), // larger spread
-                    offsetY: rand(-120, 120),
-                    radius: rand(100, 250), // larger blobs
-                    alpha: rand(0.05, 0.15) // increased opacity per blob
+    // ---------- Nebula ----------
+    function createNebula() {
+        nebulaLayers = [];
+        const nebulaColors = [
+            'rgba(180, 80, 200, 0.05)',
+            'rgba(120, 200, 255, 0.04)',
+            'rgba(255, 100, 150, 0.03)',
+            'rgba(150, 255, 180, 0.02)'
+        ];
+
+        nebulaColors.forEach(color => {
+            const blobs = [];
+            const blobCount = rand(6, 10);
+            for (let i = 0; i < blobCount; i++) {
+                blobs.push({
+                    x: rand(0, W),
+                    y: rand(0, H),
+                    radius: rand(W*0.1, W*0.25),
+                    offsetX: rand(-0.2, 0.2),
+                    offsetY: rand(-0.1, 0.1),
+                    angle: rand(0, Math.PI*2)
                 });
             }
-            clouds.push(nebula);
-        }
+            nebulaLayers.push({ color, blobs });
+        });
     }
 
-    function drawNebulae() {
-        for (const n of clouds) {
-            n.x += n.vx;
-            n.y += n.vy;
-            if (n.x - 200 > W) n.x = -200;
-            if (n.y - 200 > H) n.y = -200;
-
-            for (const b of n.blobs) {
-                const gx = n.x + b.offsetX;
-                const gy = n.y + b.offsetY;
-                const gradient = ctx.createRadialGradient(gx, gy, 0, gx, gy, b.radius);
-                gradient.addColorStop(0, `hsla(${rand(220, 260)}, 70%, 60%, ${b.alpha * n.alpha})`);
-                gradient.addColorStop(1, `hsla(${rand(220, 260)}, 70%, 60%, 0)`);
-                ctx.fillStyle = gradient;
+    function drawNebula() {
+        nebulaLayers.forEach(layer => {
+            ctx.fillStyle = layer.color;
+            layer.blobs.forEach(blob => {
+                const grad = ctx.createRadialGradient(
+                    blob.x + Math.sin(blob.angle) * blob.offsetX * blob.radius,
+                    blob.y + Math.sin(blob.angle) * blob.offsetY * blob.radius,
+                    blob.radius*0.3,
+                    blob.x,
+                    blob.y,
+                    blob.radius
+                );
+                grad.addColorStop(0, layer.color);
+                grad.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = grad;
                 ctx.beginPath();
-                ctx.arc(gx, gy, b.radius, 0, Math.PI * 2);
+                ctx.arc(blob.x, blob.y, blob.radius, 0, Math.PI*2);
                 ctx.fill();
-            }
-        }
+
+                blob.angle += 0.001; // subtle movement
+            });
+        });
     }
 
-
-    function drawAll() {
+    function animate() {
         ctx.clearRect(0, 0, W, H);
-        drawNebulae();
+        drawNebula();
         drawStars();
-        requestAnimationFrame(drawAll);
+        requestAnimationFrame(animate);
     }
 
-    function init() {
-        resize();
-        drawAll();
+    function init() { 
+        resize(); 
+        createStars(); 
+        animate(); 
     }
 
     let resizeTimer;
@@ -147,6 +150,7 @@
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
             resize();
+            createStars();
         }, 120);
     });
 
