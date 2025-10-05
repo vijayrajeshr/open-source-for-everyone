@@ -93,7 +93,7 @@ ul li {
     background-clip: text;
     -webkit-background-clip: text;
     background-size: 0% 100%;
-    animation: text-wipe-reveal 3.5s ease-out 1.7s forwards;
+    animation: text-wipe-reveal 3.5s ease-out 2s forwards;
     white-space: nowrap;             /* ensures caption stays in one line */
 }
 
@@ -108,7 +108,7 @@ ul li {
     /* text-transform: uppercase; */
     z-index: 20;
     color: rgba(180, 220, 255, 0.85);  /* subtle complementary color */
-    animation: fade-in 3.5s ease-out 5s forwards;
+    animation: fade-in 3.5s ease-out 5.5s forwards;
     opacity: 0;
 }
 
