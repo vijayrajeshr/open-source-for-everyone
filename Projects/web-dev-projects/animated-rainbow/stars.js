@@ -24,9 +24,9 @@
                 x: Math.random()*W,
                 y: Math.random()*H,
                 size: rand(cfg.sizeMin, cfg.sizeMax),
-                alpha: rand(0.3, 1), // brightness
-                vx: rand(-0.05, 0.05), // horizontal speed
-                vy: rand(-0.02, 0.02)  // vertical speed
+                alpha: rand(0.3, 1), 
+                vx: rand(-0.2, 0.2), // increased horizontal speed
+                vy: rand(-0.1, 0.1)  // increased vertical speed
             });
         }
     }
