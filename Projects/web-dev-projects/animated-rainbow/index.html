@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="rainbow.css">
 </head>
 <body>
-    <!-- Ambient background (starry sky) -->
+    <!-- Ambient background -->
     <div class="ambient-wrapper" aria-hidden="true">
         <canvas class="particles" id="particles"></canvas>
         <div class="light-beams" aria-hidden="true">
@@ -44,12 +44,15 @@
             let stars = [];
 
             function resize() {
-                W = canvas.clientWidth; H = canvas.clientHeight;
-                canvas.width = Math.round(W*DPR); canvas.height = Math.round(H*DPR);
+                W = window.innerWidth;
+                H = window.innerHeight;
+                canvas.width = Math.round(W * DPR);
+                canvas.height = Math.round(H * DPR);
                 ctx.setTransform(DPR,0,0,DPR,0,0);
             }
 
             function rand(min,max){ return Math.random()*(max-min)+min; }
+
             function createStars(){
                 stars = [];
                 for(let i=0;i<cfg.count;i++){
@@ -57,7 +60,7 @@
                         x: Math.random()*W,
                         y: Math.random()*H,
                         size: rand(cfg.sizeMin, cfg.sizeMax),
-                        alpha: rand(0.2, 1),
+                        alpha: rand(0.08, 0.95), // original brightness
                         alphaChange: rand(0.002,0.008)
                     });
                 }
@@ -67,8 +70,8 @@
                 ctx.clearRect(0,0,W,H);
                 for(const s of stars){
                     s.alpha += s.alphaChange * (Math.random()<0.5?-1:1);
-                    if(s.alpha < 0.1) s.alpha = 0.1;
-                    if(s.alpha > 1) s.alpha = 1;
+                    if(s.alpha < 0.08) s.alpha = 0.08;
+                    if(s.alpha > 0.95) s.alpha = 0.95;
                     ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
@@ -83,7 +86,13 @@
 
             function init(){ resize(); createStars(); animate(); }
             let resizeTimer;
-            window.addEventListener('resize',()=>{ clearTimeout(resizeTimer); resizeTimer=setTimeout(()=>{ resize(); createStars(); },120); });
+            window.addEventListener('resize',()=>{
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(()=>{
+                    resize();
+                    createStars();
+                }, 120);
+            });
             requestAnimationFrame(init);
         })();
     </script>
