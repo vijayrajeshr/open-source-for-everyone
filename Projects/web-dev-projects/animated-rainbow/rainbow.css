@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(180deg, #00000a, #0b1620); /* slightly darker night sky */
+    background: linear-gradient(180deg, #000005, #080f1a); /* darker night sky */
     height: 100vh;
     overflow: hidden;
     position: relative;
@@ -16,8 +16,24 @@ body::after {
     left: 0;
     width: 100%;
     height: 40%;
-    background: linear-gradient(0deg, rgba(11,22,32,1) 0%, rgba(11,22,32,0) 100%);
+    background: linear-gradient(0deg, rgba(8,15,25,0.9) 0%, rgba(8,15,25,0) 100%);
     z-index: 10;
+}
+
+/* Ambient Light Beams - smooth version */
+body::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 60%),
+        linear-gradient(160deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 60%),
+        linear-gradient(120deg, rgba(255,255,255,0.015) 0%, rgba(255,255,255,0) 60%);
+    z-index: 5; /* behind rainbow and stars */
+    pointer-events: none;
 }
 
 /* Make canvas fill the entire screen */
@@ -33,7 +49,7 @@ body::after {
 
 .center {
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -66,8 +82,8 @@ ul li {
     top: 245px;
     width: 100%;
     text-align: center;
-    font-size: 32px;
-    letter-spacing: 0.16em;
+    font-size: 40px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     z-index: 20;
     color: transparent;
@@ -77,6 +93,26 @@ ul li {
     -webkit-background-clip: text;
     background-size: 0% 100%;
     animation: text-wipe-reveal 3.5s ease-out 1.7s forwards;
+}
+
+.sub-caption {
+    position: absolute;
+    top: 335px; /* slightly further below main caption */
+    width: 100%;
+    text-align: center;
+    font-size: 18px;  /* keep current font size */
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 20;
+    color: rgba(255, 255, 255, 0.7);
+    /* font-weight: 500; */
+    animation: fade-in 3.5s ease-out 5s forwards;
+    opacity: 0;
+}
+
+
+@keyframes fade-in {
+    to { opacity: 1; }
 }
 
 @keyframes text-wipe-reveal {
