@@ -59,7 +59,7 @@
             if (s.y < 0) s.y = H;
 
             // subtle twinkle
-            const alpha = s.alpha + 0.15 * Math.sin(time * 0.002 + s.x + s.y);
+            const alpha = s.alpha + 0.25 * Math.sin(time * 0.002 + s.x + s.y);
 
             // glow effect
             ctx.shadowBlur = s.glow;

@@ -87,28 +87,32 @@ ul li {
     text-transform: uppercase;
     z-index: 20;
     color: transparent;
-    background-image: linear-gradient(to right, #fff, #fff);
+    font-family: 'Cinzel', serif; /* cinematic premium font */
+    background-image: linear-gradient(to right, #E6E6FA, #FFFFFF); /* icy white gradient */
     background-repeat: no-repeat;
     background-clip: text;
     -webkit-background-clip: text;
+    white-space: nowrap; /* keep in one line */
+    overflow: hidden;
     background-size: 0% 100%;
-    animation: text-wipe-reveal 3.5s ease-out 1.7s forwards;
+    animation: text-wipe-reveal 3.5s ease-out 1.7s forwards; /* original animation */
 }
 
 .sub-caption {
     position: absolute;
-    top: 335px; /* slightly further below main caption */
+    top: 335px; /* spacing below caption */
     width: 100%;
     text-align: center;
-    font-size: 18px;  /* keep current font size */
+    font-size: 18px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     z-index: 20;
-    color: rgba(255, 255, 255, 0.7);
-    /* font-weight: 500; */
+    color: #A0E0FF; /* complementary icy blue */
+    /* font-family: 'Cormorant Garamond', serif; elegant cinematic font */
     animation: fade-in 3.5s ease-out 5s forwards;
     opacity: 0;
 }
+
 
 
 @keyframes fade-in {
