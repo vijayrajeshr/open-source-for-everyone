@@ -1,27 +1,69 @@
-body{
+/* ================= Rainbow Styles ================= */
+body {
     margin: 0;
     padding: 0;
-    background-color: black;
-  }
+    background: linear-gradient(180deg, #000005, #080f1a); /* darker night sky */
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-  .center{
+body::after {
+    content: '';
     position: absolute;
-    top: 40%;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(0deg, rgba(8,15,25,0.9) 0%, rgba(8,15,25,0) 100%);
+    z-index: 10;
+}
+
+/* Ambient Light Beams - smooth version */
+body::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 60%),
+        linear-gradient(160deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 60%),
+        linear-gradient(120deg, rgba(255,255,255,0.015) 0%, rgba(255,255,255,0) 60%);
+    z-index: 5; /* behind rainbow and stars */
+    pointer-events: none;
+}
+
+/* Make canvas fill the entire screen */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0; /* behind rainbow */
+}
+
+.center {
+    position: absolute;
+    top: 30%;
     left: 50%;
     transform: translate(-50%,-50%);
-  }
+}
 
-  ul{
+ul {
     margin: 0;
     padding: 0;
     position: relative;
     width: 400px;
     height: 240px;
     overflow: hidden;
-    border-bottom: 1px solid rgba(0,0,0,.2);
-  }
+}
 
-  ul li{
+ul li {
     list-style: none;
     border-radius: 50%;
     border: 15px solid #000;
@@ -30,80 +72,71 @@ body{
     left: 50%;
     border-bottom-color: transparent !important;
     border-left-color: transparent !important;
-    box-shadow: 0 0 10px rgba(0,0,0,.5);
-    animation: animate 5s infinite alternate;
+    animation: animate 5s ease-in-out infinite alternate;
     transform: translate(-50%,-50%);
-  }
+    filter: drop-shadow(1px 0 1.5px currentColor);
+}
 
-  .one{
-    width: 60px;
-    height: 60px;
-    border-color:#FF0000;
-    animation-delay: .2s;
-    animation-duration: 5s;
-    animation-name: animate;
-  }
+.caption {
+    position: absolute;
+    top: 245px;
+    width: 100%;
+    text-align: center;
+    font-size: 41px;                /* slightly bigger for cinematic effect */
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;   /* premium cinematic font */
+    z-index: 20;
+    color: transparent;
+    background-image: linear-gradient(to right, #FFD700, #FFAA00); /* shiny golden gradient */
+    background-repeat: no-repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 0% 100%;
+    animation: text-wipe-reveal 3.5s ease-out 2s forwards;
+    white-space: nowrap;             /* ensures caption stays in one line */
+}
 
-  .two{
-    width: 90px;
-    height: 90px;
-    border-color:#FF7F00;
-    animation-delay: .4s;
-    animation-duration: 5s;
-    animation-name: animate;
-  }
+.sub-caption {
+    position: absolute;
+    top: 320px;                     /* proper spacing below main caption */
+    width: 100%;
+    text-align: center;
+    font-size: 22px;                /* slightly larger for visibility */
+    letter-spacing: 0.1em;
+    font-family: 'Cormorant Garamond', serif;
+    /* text-transform: uppercase; */
+    z-index: 20;
+    color: rgba(180, 220, 255, 0.85);  /* subtle complementary color */
+    animation: fade-in 3.5s ease-out 5.5s forwards;
+    opacity: 0;
+}
 
-  .three{
-    width: 120px;
-    height: 120px;
-    border-color:#FFFF00;
-    animation-delay: .6s;
-    animation-duration: 5s;
-    animation-name: animate;
-  }
 
-  .four{
-    width: 150px;
-    height: 150px;
-    border-color:#00FF00;
-    animation-delay: .8s;
-    animation-duration: 5s;
-    animation-name: animate;
-  }
 
-  .five{
-    width: 180px;
-    height: 180px;
-    border-color:#0000FF;
-    animation-delay: 1s;
-    animation-duration: 5s;
-    animation-name: animate;
-  }
 
-  .six{
-    width: 210px;
-    height: 210px;
-    border-color:#4B0082;
-    animation-delay: 1.2s;
-    animation-duration: 5s;
-    animation-name: animate;
-  }
+@keyframes fade-in {
+    to { opacity: 1; }
+}
 
-  .seven{
-    width: 240px;
-    height: 240px;
-    border-color:#9400D3;
-    animation-delay: 1.4s;
-    animation-duration: 5s;
-    animation-name: animate;
-  }
+@keyframes text-wipe-reveal {
+    to { background-size: 100% 100%; }
+}
 
-  @keyframes animate{
-    0%{
-      transform: translate(-50%,-50%) rotate(-45deg);
-    }
+.one { width: 60px; height: 60px; border-color:#FF0000; color: #FF0000; animation-delay: .2s; }
+.two { width: 90px; height: 90px; border-color:#FF7F00; color: #FF7F00; animation-delay: .4s; }
+.three { width: 120px; height: 120px; border-color:#FFFF00; color: #FFFF00; animation-delay: .6s; }
+.four { width: 150px; height: 150px; border-color:#00FF00; color: #00FF00; animation-delay: .8s; }
+.five { width: 180px; height: 180px; border-color:#0000FF; color: #0000FF; animation-delay: 1s; }
+.six { width: 210px; height: 210px; border-color:#4B0082; color: #4B0082; animation-delay: 1.2s; }
+.seven { width: 240px; height: 240px; border-color:#9400D3; color: #9400D3; animation-delay: 1.4s; }
 
-    100%{
-      transform: translate(-50%,-50%) rotate(315deg);
-    }
-  }
+@keyframes animate {
+    0% { transform: translate(-50%,-50%) rotate(-45deg); }
+    100% { transform: translate(-50%,-50%) rotate(315deg); }
+}
+
+/* ================= Ambient Light Beams ================= */
+.light-beam {
+    opacity: 1; /* full brightness */
+}
