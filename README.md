@@ -40,7 +40,7 @@ If you need help with this, feel free to ask!
 
 
 
-We strive to foster an inclusive and friendly environment. Please contact for any doubts  :)
+We strive to foster an inclusive and friendly environment. Reach out for any doubt  😊
 
 
 <div align="center">
