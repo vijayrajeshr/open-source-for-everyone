@@ -10,13 +10,18 @@ def mul(n1, n2):
 def div(n1, n2):
     return n1 / n2
 
+def per(n1, n2):
+    percentage = (n1/100) * n2
+    return percentage
+
 print("Please select operation -\n"
       "1. Add\n"
       "2. Subtract\n"
       "3. Multiply\n"
-      "4. Divide\n")
+      "4. Divide\n"
+      "5. Percentage\n")
 
-sel = int(input("Select operation (1-4): "))
+sel = int(input("Select operation (1-5): "))
 
 n1 = int(input("Enter first number: "))
 n2 = int(input("Enter second number: "))
@@ -29,5 +34,7 @@ elif sel == 3:
     print(n1, "*", n2, "=", mul(n1, n2))
 elif sel == 4:
     print(n1, "/", n2, "=", div(n1, n2))
+elif sel == 5:
+    print(f"{n1} % {n2} = {per(n1, n2)}")
 else:
     print("Invalid input")
