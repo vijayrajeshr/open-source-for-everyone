@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Management Console</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23FF9900' d='M12 2L2 7l10 5 10-5-10-5z'/><path fill='%23FF9900' d='M2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-box">
+            <div class="login-logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="#FF9900">
+                    <path d="M20 4L4 12l16 8 16-8L20 4z"/>
+                    <path d="M4 28l16 8 16-8M4 20l16 8 16-8"/>
+                </svg>
+                <h1>Amazon Web Services</h1>
+            </div>
+            <form id="login-form" class="login-form">
+                <h2>Sign in to the Console</h2>
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <div id="login-error" class="login-error hidden"></div>
+                <button type="submit" class="btn btn--primary btn--full-width">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Console -->
+    <div id="console-app" class="console-app hidden">
+        <!-- Navigation Bar -->
+        <header class="console-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="aws-logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#FF9900">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <span>AWS</span>
+                    </div>
+                    <nav class="main-nav">
+                        <a href="#" data-page="home" class="nav-link active">Console Home</a>
+                        <a href="#" data-page="services" class="nav-link">Services</a>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <div class="region-selector">
+                        <select id="region-select" class="form-control">
+                            <option value="us-east-1">🇺🇸 US East (N. Virginia)</option>
+                            <option value="us-west-2">🇺🇸 US West (Oregon)</option>
+                            <option value="eu-west-1">🇪🇺 Europe (Ireland)</option>
+                            <option value="ap-southeast-1">🇸🇬 Asia Pacific (Singapore)</option>
+                        </select>
+                    </div>
+                    <div class="user-menu">
+                        <span class="username">vijayrajeshr</span>
+                        <button id="logout-btn" class="btn btn--outline btn--sm">Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Console Home Page -->
+        <main id="home-page" class="console-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>AWS Management Console</h1>
+                    <p>Welcome back, vijayrajeshr</p>
+                </div>
+
+                <!-- Quick Actions -->
+                <section class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-grid">
+                        <button class="action-card" data-action="launch-ec2">
+                            <div class="action-icon">🖥️</div>
+                            <h3>Launch EC2 Instance</h3>
+                            <p>Launch a virtual server in the cloud</p>
+                        </button>
+                        <button class="action-card" data-action="create-s3">
+                            <div class="action-icon">🗂️</div>
+                            <h3>Create S3 Bucket</h3>
+                            <p>Store and retrieve data</p>
+                        </button>
+                        <button class="action-card" data-action="create-lambda">
+                            <div class="action-icon">⚡</div>
+                            <h3>Create Lambda Function</h3>
+                            <p>Run code without servers</p>
+                        </button>
+                        <button class="action-card" data-action="view-billing">
+                            <div class="action-icon">💰</div>
+                            <h3>View Billing</h3>
+                            <p>Monitor costs and usage</p>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Resource Overview -->
+                <section class="resource-overview">
+                    <h2>Resource Overview</h2>
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <h3>EC2 Instances</h3>
+                            <div class="metric">
+                                <span class="metric-value" id="ec2-count">0</span>
+                                <span class="metric-label">Running</span>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <h3>S3 Buckets</h3>
+                            <div class="metric">
+                                <span class="metric-value" id="s3-count">0</span>
+                                <span class="metric-label">Total</span>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Lambda Functions</h3>
+                            <div class="metric">
+                                <span class="metric-value" id="lambda-count">0</span>
+                                <span class="metric-label">Active</span>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Monthly Cost</h3>
+                            <div class="metric">
+                                <span class="metric-value" id="monthly-cost">$0.00</span>
+                                <span class="metric-label">Estimated</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Services Page -->
+        <main id="services-page" class="console-page hidden">
+            <div class="container">
+                <div class="page-header">
+                    <h1>All Services</h1>
+                    <div class="search-box">
+                        <input type="text" id="service-search" class="form-control" placeholder="Search services...">
+                    </div>
+                </div>
+                <div class="services-grid" id="services-grid">
+                    <!-- Services will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <!-- EC2 Dashboard -->
+        <main id="ec2-page" class="console-page hidden">
+            <div class="container">
+                <div class="page-header">
+                    <h1>EC2 Dashboard</h1>
+                    <button id="launch-instance-btn" class="btn btn--primary">Launch Instance</button>
+                </div>
+                <div class="instances-table">
+                    <h2>Instances</h2>
+                    <table id="instances-table">
+                        <thead>
+                            <tr>
+                                <th>Instance ID</th>
+                                <th>Name</th>
+                                <th>Instance Type</th>
+                                <th>State</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="instances-tbody">
+                            <tr class="no-instances">
+                                <td colspan="5">No instances found. Launch your first instance!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- EC2 Launch Wizard -->
+        <div id="launch-wizard" class="wizard-overlay hidden">
+            <div class="wizard-container">
+                <div class="wizard-header">
+                    <h2>Launch Instance</h2>
+                    <button id="close-wizard" class="wizard-close">✕</button>
+                </div>
+                <div class="wizard-progress">
+                    <div class="progress-steps">
+                        <div class="step active" data-step="1">1. Choose AMI</div>
+                        <div class="step" data-step="2">2. Instance Type</div>
+                        <div class="step" data-step="3">3. Configure</div>
+                        <div class="step" data-step="4">4. Storage</div>
+                        <div class="step" data-step="5">5. Tags</div>
+                        <div class="step" data-step="6">6. Security</div>
+                        <div class="step" data-step="7">7. Review</div>
+                    </div>
+                </div>
+                <div class="wizard-content">
+                    <!-- Step 1: Choose AMI -->
+                    <div id="wizard-step-1" class="wizard-step active">
+                        <h3>Step 1: Choose an Amazon Machine Image (AMI)</h3>
+                        <div class="ami-tabs">
+                            <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+                            <button class="tab-btn" data-tab="marketplace">AWS Marketplace</button>
+                        </div>
+                        <div class="ami-list" id="ami-list">
+                            <!-- AMIs will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Choose Instance Type -->
+                    <div id="wizard-step-2" class="wizard-step hidden">
+                        <h3>Step 2: Choose an Instance Type</h3>
+                        <div class="instance-types" id="instance-types">
+                            <!-- Instance types will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Configure Instance Details -->
+                    <div id="wizard-step-3" class="wizard-step hidden">
+                        <h3>Step 3: Configure Instance Details</h3>
+                        <div class="form-group">
+                            <label class="form-label">Number of instances</label>
+                            <input type="number" id="instance-count" class="form-control" value="1" min="1" max="20">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">IAM role</label>
+                            <select id="iam-role" class="form-control">
+                                <option value="">None</option>
+                                <option value="EC2-Default">EC2-Default</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Add Storage -->
+                    <div id="wizard-step-4" class="wizard-step hidden">
+                        <h3>Step 4: Add Storage</h3>
+                        <table class="storage-table">
+                            <thead>
+                                <tr>
+                                    <th>Device</th>
+                                    <th>Size (GiB)</th>
+                                    <th>Volume Type</th>
+                                    <th>Encrypted</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>/dev/sda1 (Root)</td>
+                                    <td><input type="number" class="form-control" value="8" min="8" max="100"></td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option value="gp3">General Purpose SSD (gp3)</option>
+                                            <option value="gp2">General Purpose SSD (gp2)</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Step 5: Add Tags -->
+                    <div id="wizard-step-5" class="wizard-step hidden">
+                        <h3>Step 5: Add Tags</h3>
+                        <div class="tags-section">
+                            <table class="tags-table" id="tags-table">
+                                <thead>
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Value</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-control" placeholder="Name"></td>
+                                        <td><input type="text" class="form-control" placeholder="My Instance"></td>
+                                        <td><button type="button" class="btn btn--outline btn--sm remove-tag">Remove</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" id="add-tag" class="btn btn--secondary">Add Another Tag</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: Configure Security Group -->
+                    <div id="wizard-step-6" class="wizard-step hidden">
+                        <h3>Step 6: Configure Security Group</h3>
+                        <div class="security-group-section">
+                            <div class="form-group">
+                                <label class="form-label">Security group name</label>
+                                <input type="text" id="sg-name" class="form-control" value="launch-wizard-sg">
+                            </div>
+                            <table class="security-rules-table">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Protocol</th>
+                                        <th>Port Range</th>
+                                        <th>Source</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SSH</td>
+                                        <td>TCP</td>
+                                        <td>22</td>
+                                        <td>0.0.0.0/0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Step 7: Review -->
+                    <div id="wizard-step-7" class="wizard-step hidden">
+                        <h3>Step 7: Review Instance Launch</h3>
+                        <div class="review-section" id="review-section">
+                            <!-- Review details will be populated by JavaScript -->
+                        </div>
+                        <div class="cost-estimate">
+                            <h4>Cost Estimate</h4>
+                            <p id="cost-estimate">Calculating...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-footer">
+                    <button id="wizard-prev" class="btn btn--outline" disabled>Previous</button>
+                    <button id="wizard-next" class="btn btn--primary">Next</button>
+                    <button id="wizard-launch" class="btn btn--primary hidden">Launch</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Billing Page -->
+        <main id="billing-page" class="console-page hidden">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Billing & Cost Management</h1>
+                </div>
+                <div class="billing-dashboard">
+                    <div class="cost-summary">
+                        <h2>Cost Summary</h2>
+                        <div class="cost-cards">
+                            <div class="cost-card">
+                                <h3>Month to Date</h3>
+                                <span class="cost-amount" id="mtd-cost">$0.00</span>
+                            </div>
+                            <div class="cost-card">
+                                <h3>Forecasted</h3>
+                                <span class="cost-amount" id="forecasted-cost">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-costs">
+                        <h2>Top Services by Cost</h2>
+                        <div id="service-costs-chart" class="chart-container">
+                            <!-- Chart will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modals -->
+        <div id="key-pair-modal" class="modal-overlay hidden">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3>Select a key pair</h3>
+                    <button class="modal-close">✕</button>
+                </div>
+                <div class="modal-content">
+                    <div class="form-group">
+                        <label class="form-label">Key pair name</label>
+                        <select class="form-control">
+                            <option value="">Choose an existing key pair</option>
+                            <option value="my-key-pair">my-key-pair</option>
+                        </select>
+                    </div>
+                    <p class="warning-text">⚠️ You will not be able to connect to your instance unless you have the corresponding private key.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn--outline">Cancel</button>
+                    <button class="btn btn--primary" id="confirm-launch">Launch Instances</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
