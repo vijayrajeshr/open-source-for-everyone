@@ -2,6 +2,8 @@
 
 A beginner-friendly open source space where you can make **good first contributions**, explore **good first issues**, add and collaborate on **projects**, and grow your open source skills!
 
+[Japanese](README-JP.md)
+
 
 ## 🚀 Getting Started
 
