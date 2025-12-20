@@ -17,3 +17,5 @@ Add your **name** and **GitHub profile link** here after your contribution is me
 - [Nishanth S V](https://github.com/nishanth815) – 😊 excited about open source!
 - [John Martin](https://github.com/JohnMartin0301) - Computer Engineer who's passionate about building efficient and impactful solutions through code ⚛
 - [kaedeek](https://github.com/kaedeek) - Interested in cybersecurity and open source.
+- [CelestialSage0](https://github.com/CelestialSage0) - 😊 excited about open source!
+
