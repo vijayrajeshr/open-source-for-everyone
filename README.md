@@ -45,10 +45,6 @@ If you need help with this, feel free to ask!
 We strive to foster an inclusive and friendly environment. Reach out for any doubt  😊
 
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/d02851cc-0e7f-4687-aca8-1f6cebc4a6d7" alt="vr" width="400" />
-</div>
-
 
 
 Thank you for joining **Open Source For Everyone**! Let's make open source accessible and fun — together. 🎉
