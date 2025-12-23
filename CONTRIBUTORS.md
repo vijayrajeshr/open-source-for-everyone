@@ -19,4 +19,5 @@ Add your **name** and **GitHub profile link** here after your contribution is me
 - [John Martin](https://github.com/JohnMartin0301) - Computer Engineer who's passionate about building efficient and impactful solutions through code ⚛
 - [kaedeek](https://github.com/kaedeek) - Interested in cybersecurity and open source.
 - [CelestialSage0](https://github.com/CelestialSage0) - 😊 excited about open source!
+- [Riddhesh Randive](https://github.com/Riddhesh739) - CS student @COEP, learning and growing.
 
